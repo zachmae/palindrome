@@ -1,0 +1,10 @@
+USAGE
+        ./palindrome -n nb -p pal [-b base] [-imin i] [-imax i]
+
+DESCRIPTION
+        -n n     integer to be transformed (>=0)
+        -p pal   palindromic number to be obtained (incompatible with the -n option) (>=0)
+                 if defined, all fitting value of n will be output
+        -b base  base in which the procedure will be executed (1<b<10) [def:10]
+        -imin i  minimum number of iterations, included (>=0) [def: 0]
+        -imax i  maximum number of iterations, included (>=0) [def: 100]

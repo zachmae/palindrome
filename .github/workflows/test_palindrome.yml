@@ -1,0 +1,35 @@
+name: palindrome
+
+on:
+  push:
+    branches: [ master, main, dev ]
+  pull_request:
+    branches: [ master, main, dev ]
+
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test_server:
+    name: test_palindrome
+    container: epitechcontent/epitest-docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: compile
+      run: make
+    - name: test_bash_palindrome
+      if: ${{ always() }}
+      run: ./tests/test_palindrome.sh > result_tests_palindrome ; cat result_tests_palindrome
+    - name: Artifact_palindrome
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        name: result_tests_palindrome
+        path: ./result_tests_palindrome
